@@ -1,0 +1,377 @@
+Student.objects.filter(marks=71)
+Student.objects.exclude(marks=70)
+Student.objects.order_by('-marks')(descending ma dincha)
+Student.objects.order_by('?')(randomly dincha)
+
+view
+i.function based view
+ii.class based view 
+
+class Based view
+i.based class base view
+ii.generic class based view/generic view
+
+based class base view
+	it's type 
+	1.based class based view(it is the father)
+	  1.view 
+	  2. Template view
+	  3. Redirect View
+
+	  view
+	  django.views.generic.base.View
+	  -it has methods names= ['get','post','put','delete','head','option','trace']
+	  .as_view() method
+
+	   function based views:
+	    
+	   def myview(request):
+	     return ......
+
+	     template_name = 'index.html'
+	     def myview(request):
+		return render(request,template_name)
+	   
+
+	1.   class based view:
+	  from djsngo.view import View
+	   
+	  class Myview(View):
+	    def get(self,request):
+	      return render(request,'index.html')
+	    
+	    def post(self,request):
+	      form = Contactform(request.POST)
+	      if form.is_valid()
+		  form.save()
+
+	   class based view:
+
+	      template_name='index.html'
+	      def get(self,request):
+		return render(reuest,template_name)
+
+
+	Template VIew
+	2.from django.views.generic.base import TemplateView
+
+	  TemplateResponseMixin
+
+	class HomeTemplateView(TemplateView)(this TempleteView comes from urls.py)
+	   template_name = 'index.html'
+
+	   def get_context_data(self,*args, **kwargs):
+	      context = super().get_context_data(**kwargs)
+	      fm = Studentform()
+	      stud = User.objects.all()
+	      context['name'] = 'suren'
+	      context['roll'] = 12 
+	      context{'user':stud,'form':fm}(dictionery gareni huncha  context['name'] = 'suren' yo gareni huncha)
+	      return context     
+	    
+	    def post(self, request):
+	       user= USer()
+	       form.save()
+	       you can write here code
+	       return render(request,'index.html')
+	ani wuta index.html
+	vitra 
+	<html>
+	<body>
+	<h1>Home page</h1>
+	<h2> {{name}} <h2>
+
+	</body>
+	</html>
+	yetti gari sake pachi wuta broser ma name suren dekhaucha.
+
+	3. Redirect View
+	from django.views.generic.baseimport RedirectView
+	class userDeleteView(RedirectView)
+		url = '/'
+
+		def get_redirect_url(self, *args,**kwargs):  (but dherai jasto yesari garcha)
+		  del_id = kwargs['id']
+		  user_object = User.objects.get(id=del_id)
+		  user.object.delete()
+		  return super().get_redirect_url(*args, **kwargs)
+
+		def delete_data(request,id):
+		  user_obeject = User.objects.get(id=id)   (yesarini garna milyo)
+		  user_obeject.delete()
+		 user_obeject.save()
+		 return redirect(url)
+	 
+	4. update garna ko lagi hai pheri view nai use garcham
+
+	   def get(self,request,id):
+	     pi = USer.objects.get(pk=id)
+	     fm = StudentForm(instance=id)
+	     return render(request, 'index.html',{'form':fm})
+	  
+	   def post(self, request, id):
+	       pi = USer.objects.get(pk=id)
+	       fm = Studentform(request.POST, instance=pi)
+	       if fm.is_valid():
+		 fm.save()
+	      return render(request, 'index.html',{'form':fm})   
+
+    
+generic class based view/generic view
+  1.Display VIew
+    - ListView
+      - from django.view.generic.ist import ListView
+      - from django.view.generic.list import MultipleOjbectTemplateResponseMixin
+      - from django.view.generic.list import BaseListView
+      - from django.view.generic.list import TemplateResponseMixin
+
+
+     class StudentListView(ListView):
+           model = Student
+           template_name_suffix ='_get'   (ya default_list huncha)
+           template_name = home.html   (yo rakhena vanechai modelsname_list huncha)
+           context_object_name = 'studjents'( yesari yo pani change garna milyo)
+           return render(request,'student_list')(yo student_list chai wuta template filema jancha.yo kei lekhnu parena hamle)
+
+           def get_queryset(self):
+             return Student.objects.filter(course='python')
+
+           def get_context_data(self, *args, **kwargs):
+               context = super().get_context_data(*args, **kwargs)
+               context['suren'] = Student.objects.all().order_by('name')
+               return context
+
+           def get_template_names(self):
+               if self.request.COOKIES['user'] = 'suren'
+                     template_name = 'index.html'
+               else:
+                    template_name = self.template_name
+               return [template_name]
+
+
+
+    - DetailView
+
+from django.views.genric.detail import Detail_view
+     class StudentListView(DetailView):(yesma chai wuta template ma small letter ma model ko name lincha ani pheri template ko name chai 
+student_detail.html hunuparcha  yedi template ko name arkai rakhnu man cha vani models ko muni template_name = 'templatename' rakhnu parcha)
+           model = Student
+           template_name = 'student.html'   (yo rakhyo vani chai template ko yei small student thuncha natra 
+           context_object_name = 'stu'  (yo huncha natra vani default student nai use hunhca html file vitra)
+           pk_url_kwarg = 'geet' (ya j rakhyo wuta url ko path ma ni tei rakhnu ani browser ma id ni pass garna paiyo)
+vani student_detail nai huncha.)
+        url ma chai path('student/<int:geet>', views.StudentDetailView().as_View(), name='studentdetail')
+
+ani 
+ 
+  2.Editing VIew
+    - Form View
+
+      from .forms import ContactForm
+      from django.views.generic.edit import FormVIew
+      classContactFormView(FormView):
+        form_class = ContactForm
+        template_name = 'contact.html'
+        sucess_url = '/thankyou/'
+        
+        def form_valid(self, form):
+          name = form.cleaned_data['name']
+          return super().form_valid(form)
+        def context_data pani use garna milcha.
+    - CreateView
+      from django.views.generic.edit import CreateView   
+      
+class StudentCreateView(CreateView):(yo class le model afai create garcha ra yo class ko template file student_form.html huncha)
+  model = Student
+  fields = ['name','email','password']
+  success_url = '/create/'  
+  
+  def get_form(self):
+     form = super().get_form()
+     form.fields['name'].widget=forms.TextInput(attrs={'class':'classname'}) 
+     form.fields['password'].widget=forms.PasswordInput(attrs={'class':'mypass'}) 
+     return form
+
+mathi ko jasari hareni huncha arthawa yesari gareni huncha
+class StudentCreateView(CreateView):(yesari garyo vani chai template_nmae rakhnu parcha)
+  form_class = studentform
+  template_name = 'index.html'
+  success_url = '/create' 
+    
+    - Update View
+
+from django.views.gneric.edit import Updateview
+update ko lagi url bata id pass garnu parxa
+class StudentUpdateView(Updateview):(yesari garyo vani chai template_nmae rakhnu parcha)
+  model = Student
+  fields = ['name','email','password']
+  success_url = '/updateS' 
+
+  def get_form(self):
+     form = super().get_form()
+     form.fields['name'].widget=forms.TextInput(attrs={'class':'classname'}) 
+     form.fields['password'].widget=forms.PasswordInput(attrs={'class':'mypass'}) 
+     return form
+
+mathi ko jasari gareni huncha arthawa yesari gareni huncha
+class StudentUpdateView(UpdateView):(yesari garyo vani chai template_nmae rakhnu parcha)
+  form_class = studentform
+  template_name = 'index.html'
+  success_url = '/update' 
+    
+
+    - Delete View
+from django.views.generic.edit import Deleteview
+(yesto template file defaultma modelname_confirm_delete.html)
+plus url bata idpathaunu parxa
+class StudentDeleteView(DeleteView):(yesari garyo vani chai template_nmae rakhnu parcha)
+  model = Student
+  success_url = '/create' 
+  template_name = 'index.html'( yedi afnai template dinu cha vani natra default nai huncha)    
+arthawa template class banayera sucessurl pass garera ni sakincha.
+  3. Date View
+    - ArchiveindexView
+    - YeararchiveView  
+    - MontharchiveView
+    - WeekarchiveView
+from django.contrib.auth.views import LoginView, LogoutView, PasswordChangeView, PasswordResetConfirmView, PasswordResetView(yoni huncha)
+
+
+
+swagger ni herisakyo
+mixins (login reuired) ra custom mixins
+permissions 
+from restframework.permissions import IsAuthenticated, IsAdminUSer, BasePermission
+from restframework.authentication import BasicAuthentication
+
+class WriteByadminPermission(BasePermission):
+  def has_permission(slef, request, view):
+    user=request.user
+    if request.method == 'GET':
+       return True
+    if request.method == 'POST' or request.method == 'PUT' or request.method == 'DELETE':
+        if user.is_superuser:
+            return True
+    return False (yesma True lekhyo vani dekhcha natra dekhdaina)
+
+class CourseListView(generics.ListCreateAPIView):
+  authentication_classes =[BasicAuthentication]
+  permission_classes = [WriteByadminPermission]
+  serializer_class = CourseSerializer
+  queryset = Instructor.objects.all()
+
+Mixins
+class CourseObjectMixin(object):
+  model = Course
+  
+  def get_object(self):
+    id = self.kwargs.get(self.id)
+    obj = None
+    if id is not None:
+       obj = get_object_or_404(self.model, id=id)
+    return obj
+
+class CourseDeleteVIew(CourseObjectMixin, View):
+  template_name = 'course_delete.html'
+  def get(self, request, id=None, **kwargs)
+    context = {}
+    obj = self.get_object()
+    if obj is not None:
+       context['object']
+    return render(request, self.template_name, context)
+
+authentication_class=[sessionauthentication]
+permission_class =[IsAuthenticatedOrReadOnly](yesma user authenticted navayeni read permission chai dincha)
+permission_class =[AlllowedAny]
+permission_class =[IsAdminUser]
+permission_class =[DjangoModelPermisiionsOrAnonReadOnly]
+permission_class =[DjangoObjectPermissions]
+authentication_classes =[TokenAuthentication]
+token ko lagi settings.py ko installedapps ma 'rest_framework_authtoken' vitra kei kura thapnuparcha 
+admin magayera token modelsma user add garera userko token generate garna mimlchaplus python manage.py drf_create_token username pani garna milcha.
+urls.py ma niarna milcha tesko lagi yetso garyovani usernma ra password hanni option nai aucha
+path('obtaingarna', obtain_auth_token)
+yeskolagi pip install httpiepani garnu parcha
+
+CUstom Authentication
+from restframewrk.authentication importBaseAuthentication
+
+class CustomAuthentication(BaseAuthentication)
+  def authenticate(self, request):
+     username = request.GET.get('username')
+     if username is None:     
+	return None:
+     
+     try:
+        user = User.objects.get(username=username)
+     except User.DoesnotExist:
+       raise AuthenticationFailed('NO such User')
+     return (user,None)
+    
+ani arko class ma 
+from api.customauth import CutomAuthentication
+authentication_classes = [CutomAuthentication]
+
+checkgarna kolagi 
+127.007 bla bla /?username="suren"  (ani username matrai bata login huncha)
+
+
+JWT 
+pip installdjangorestframework-simplejwt
+garnai parcha
+globally authentication garna lai seting.py ma gayera
+REST_FRAMEWORK = {
+'DEFAULT_AUTHENTICATION_CLASSES':(
+  'rest_framework_simplejwt.authentication.JWTAuthentication',
+)}
+
+urls.py ma from restframework_simplejwt.views import TokenObtainPairView, TokenRefreshView
+urlpatterns= [
+path('gettoken/',TokenObtainPairView.as_view(),name='token_obtain_pair'),
+path('refreshtoken/',TokenRefreshView.as_view(),name='token_refresh'),
+path('verifytoken/',TokenReVerifyView.as_view(),name='token_verify'),
+]
+
+filtering anddjangofilter
+class StudentList(ListApiView):
+   queeryset = Student.objects.all()
+   serialiser_class = StudentSerilaizer
+   def getqueryset(self):(yo garyo vani chai login user kai data  matrai dekhaucha)
+      user = self.request.user
+      return Student.objects.filter(passby=user)
+
+DjangoFilterBackend
+pip install django-filter
+
+INSTALLED_APPS = [
+   'django_filters',
+]
+
+Globally 
+settings.py
+REST_FRAMEWORK = {
+'DEFAULT_FILTER_BACKENDS':
+['django_filters.rest_framework.DjangoFilterBackend']
+}
+
+individullay apiclass lai 
+class StudentListView(ListApiView):
+   queryset = Student.objects.all()
+   serializer_class = StudentSerializer
+   filter_backends = [DjangoFilterBackend]
+   filterset_fields = ['name','city']  
+
+Searchfilter
+from rest_framewor.filter import SearchFilter
+
+class StudentListView(ListApiView):
+   queryset = Student.objects.all()
+   serializer_class = StudentSerializer
+   filter_backends = [SearchFilter]
+   search_fields = ['city']
+   filterset_fields = ['name','city']  
+
+1.get_queryset()
+2.get_context_data()
+3.get_object()
+4.get()

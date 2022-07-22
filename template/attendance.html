@@ -1,0 +1,20 @@
+{% extends 'cust.html' %}
+{% block section %}
+<br><br><br>
+{% if msg %}
+<h2>{{msg}}</h2>
+{% endif %}
+<form action="" method="post">
+    {% csrf_token %}
+    <label>Date:</label>
+    <input type="date" id="date" name="date"> <br><br>
+    <label>Attendence</label><br>
+    <select name="attendence">
+        <option value="present">Present</option>
+        <option value="absent">Absent</option>
+        <option value="partial">Partialy present</option>
+    </select><br><br>
+
+    <br><button>Submit</button>
+</form>
+    {% endblock %}

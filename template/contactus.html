@@ -1,0 +1,42 @@
+{% extends  'base.html' %}
+{% block section %}
+{% if data %}
+<h2>{{data}}</h2>
+
+{% endif %}
+<h2 style="text-align: center;">This is Contact page</h2><br>
+
+<form action="" method="post" class="form">
+    {% csrf_token %}
+    <label>Name</label><br>
+    <input type="text" name="name" placeholder="Enter your name"><br>
+    <label>Contact number</label><br>
+    <input type="number" name="number" placeholder="your contact number"><br>
+    <label>Subject</label><br>
+    <input type="text" name="subject" placeholder="Enter your subject"><br>
+    <label for="Message">Message</label><br>
+    <textarea name="message" placeholder="Enter your message" name="message"></textarea><br><br>
+
+    <input type="submit" value="Submit" class="inti">
+</form><br><br>
+<table border="1">
+    <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Contact number</th>
+        <th>Subject</th>
+        <th>Message</th>
+    </tr>
+    {% for i in Contactdata %}
+    <tr>
+     
+        <td>{{i.id}}</td>
+        <td>{{i.name}}</td>
+        <td>{{i.number}}</td>
+        <td>{{i.subject}}</td>
+        <td>{{i.message}}</td>
+    </tr>
+    {% endfor %}
+
+</table>
+{% endblock %}

@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+{% block section %}
+{% if msg %}
+<h2>{{msg}}</h2>
+{% endif %}
+<form action="" method="post" class="form">
+    {% csrf_token %}
+    <label for="uname">Username</label><br>
+    <input type="text" name="uname" id="uname" placeholder="Username"><br>
+    <label for="password">Password</label><br>
+    <input type="password" name="passw" id="password" placeholder="Password"><br><br>
+    <input type="submit" value="Submit" class="in">
+</form>
+{% endblock %}

@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+{% block section %}
+
+{% if msg %}
+<h2>{{msg}}</h2>
+{% endif %}
+
+<form action="" method="post" enctype="multipart/form-data" class="form">
+    {% csrf_token %}
+<label >Upload profile</label><br>
+<html class="suren">Hello </html>
+<input type="file" name="image" ><br>
+<label for="first">Firstname</label><br>
+<input type="text" name="fname" id="first" placeholder="Firstname"><br>
+<label for="last">Lastname</label><br>
+<input type="text" name="lname" id="last" placeholder="Lastname"><br>
+<label for="uname">Username</label><br>
+<input type="text" name="uname" id="uname" placeholder="Username"><br>
+<label for="passw">Password</label><br>
+<input type="password" name="passw" id="passw" placeholder="Password"><br>
+<label for="email">Email</label><br>
+<input type="email" name="email" id="email" placeholder="Email Address"><br>
+<label for="contact">ContactNumber</label><br>
+<input type="number" name="contact" id="contact" placeholder="Contact Number"><br>
+<label for="age">Age</label><br>
+<input type="number" name="age" id="age" placeholder="Age"><br>
+<label> Gender</label><br>
+<select name="gender">
+    <option value="male">Male</option>
+    <option value="female">Female</option>
+    <option value="other">Other</option>
+</select><br>
+<label>User type</label><br>
+<select name="utype">
+    <option value="a">Admin</option>
+    <option value="d">Manager</option>
+    <option value="p">Employee</option>
+
+</select><br>
+<label>Occupation</label><br>
+<textarea name="occupation" id="" cols="30" rows="10" placeholder="Enter occupation">
+</textarea><br><br>
+<input type="submit" value="Submit" class="in">
+</form>
+
+{% endblock %}

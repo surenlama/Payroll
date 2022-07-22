@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+{% block section %}
+{% if msg %}
+<h2>{{msg}}</h2>
+{% endif %}
+{% if data %}
+<form action="" method="post" enctype="multipart/form-data" class="form">
+    {% csrf_token %}
+<img src="/media/{{data.profile}}" alt="no image" style="height: 150px; width: 200px;"><br>
+<label >Update profile</label><br>
+<input type="file" name="image" ><br>
+<label for="first">Firstname</label><br>
+<input type="text" name="fname" id="first" value="{{user.first_name}}"><br>
+<label for="last">Lastname</label><br>
+<input type="text" name="lname" id="last" value="{{user.last_name}}"><br>
+<label for="uname">Username</label><br>
+<input type="text" name="uname" id="uname" value="{{user.username}}"><br>
+<label for="email">Email</label><br>
+<input type="email" name="email" id="email" value="{{user.email}}"><br>
+<label for="contact">ContactNumber</label><br>
+<input type="number" name="contact" id="contact" value="{{data.contact_number}}"><br>
+<label for="age">Age</label><br>
+<input type="number" name="age" id="age" value="{{data.age}}"><br>
+<label> Gender</label><br>
+<select name="gender">
+{% if data.gender == "male" %}
+<option value="male" selected>{{data.gender}}</option>
+<option value="female">female</option>
+<option value="other">Other</option>
+{% elif data.gender == "female" %}
+<option value="female" selected>{{data.gender}}</option>
+<option value="male">male</option>
+<option value="other">Other</option>
+{% else %}
+<option value="other" selected>{{data.gender}}</option>
+<option value="female">female</option>
+<option value="male">male</option>
+{% endif %}
+</select><br>
+<label>Occupation</label><br>
+<textarea name="occupation" id="" cols="30" rows="10" >
+    {{data.occupation}}
+</textarea><br><br>
+<input type="submit" value="Update" class="in">
+</form>
+{% endif %}
+
+{% endblock %}

@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+{% block section %}
+{% if msg %}
+<h2>{{msg}}</h2>
+{% endif %}
+<table border="1">
+<thead class="money">
+    <tr>
+        <th>Status</th>
+        <th>absent date</th>
+    </tr>
+</thead>
+
+<tbody class="money1">
+
+    <tr>
+        {% for a in attendence%}
+      
+        <td>
+            <h2>{{a.status}}</h2>
+        </td>
+        <td>
+            <h2>{{a.date}}</h2>
+        </td>
+        {% endfor %}
+    </tr>
+
+</tbody>
+</table>
+{% endblock %}

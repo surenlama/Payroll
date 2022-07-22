@@ -1,0 +1,55 @@
+{% extends 'base.html' %}
+{% block section %}
+{% if msg %}
+<h2>{{msg}}</h2>
+{% endif %}
+<table border="1">
+<thead class="money">
+    <tr>
+        <th>IMAGE</th>
+        <th>FIRSTNAME</th>
+        <th>LASTNAME</th>
+        <th>USERNAME</th>
+        <th>EMAIL</th>
+        <th>CONTACTNUMBER</th>
+        <th>AGE</th>
+        <th>GENDER</th>
+        <th>OCCUPATION</th>
+    </tr>
+</thead>
+<tbody class="money1">
+    <tr>
+        {% if data %}
+        <td>     
+            <img src="/media/{{data.profile}}" alt="no image" style="height: 100px; width: 200px;">  
+        </td>
+        <td>
+            <h2>{{user.first_name}}</h2>
+        </td>
+        <td>
+            <h2>{{user.last_name}}</h2>
+        </td>
+        <td>
+            <h2>{{user.username}}</h2>
+        </td>
+        <td>
+            <h2>{{user.email}}</h2>
+        </td>
+        <td>
+            <h2>{{data.contact_number}}</h2>  
+        </td>
+        <td>
+            <h2>{{data.age}}</h2>
+        </td>
+        <td>
+            <h2>{{data.gender}}</h2>
+        </td>
+        <td>
+            <h2>{{data.occupation}}</h2>
+        </td>
+        {% endif %}
+    </tr>
+
+</tbody>
+</table>
+{% endblock %}

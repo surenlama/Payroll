@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+{% block section %}
+{% if msg %}
+<h2>{{msg}}</h2>
+{% endif %}
+<table border="1">
+<thead class="money">
+    <tr>
+        <th>Employee Name</th>
+        <th>Tax Rate</th>
+        <th>Monthly Salary</th>
+        <th>Over time in hour</th>
+        <th>Bonus</th>
+        <th>No of leave day</th>
+        <th>Total Salary</th>
+         </tr>
+</thead>
+
+<tbody class="money1">
+    {% for s in salary%}
+
+    <tr>
+      <td>
+        <h2>{{s.user.first_name}}</h2>
+      </td>
+    
+        <td>
+            <h2>{{s.tax}}</h2>
+        </td>
+        <td>
+            <h2>{{s.salary}}</h2>
+        </td>
+        <td>
+            <h2>{{s.overtimehour}}</h2>
+        </td>
+        <td>
+            <h2>{{s.bonus}}</h2>
+        </td>
+        <td>
+            <h2>{{s.no_of_leave_day}}</h2>
+        </td>
+        <td>
+            <h2>{{s.total_salary}}</h2>
+        </td>
+    </tr>
+    {% endfor %}
+
+</tbody>
+</table>
+
+{% endblock %}

@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% block section %}
+{% if data %}
+<h2>{{data}}</h2>
+{% endif %}
+<form action="" method="post" class="form">
+    {% csrf_token %}
+    <label for="uname">To</label><br>
+    <input type="text" name="to" id="uname" placeholder="To"><br>
+    <label >Subject</label><br>
+    <input type="text" name="subject" id="password" placeholder="Subject"><br><br>
+    <label >Message</label><br>
+    <textarea name="message" id="" cols="30" rows="10" placeholder="Message"></textarea><br><br>
+    <input type="submit" value="send email" class="in" >
+</form>
+{% endblock %}
