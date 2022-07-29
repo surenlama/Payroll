@@ -1,14 +1,14 @@
 {% extends 'cust.html' %}
-{% block section %}
+{% block dashboard %}
 <br><br><br>
 {% if msg %}
 <h2>{{msg}}</h2>
 {% endif %}
-<form action="" method="post">
+<form action="" method="post" style="margin-bottom: 40%;">
     {% csrf_token %}
-    <label>Date:</label>
+    <label  style="color: black;">Date:</label>
     <input type="date" id="date" name="date"> <br><br>
-    <label>Attendence</label><br>
+    <label  style="color: black;">Attendence</label><br>
     <select name="attendence">
         <option value="present">Present</option>
         <option value="absent">Absent</option>

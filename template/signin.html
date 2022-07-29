@@ -1,14 +1,208 @@
-{% extends 'base.html' %}
-{% block section %}
+
+
+
+
+{% load static %}
+<!doctype html>
+    <html lang="en">
+
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <title>Payroll Management System</title>
+        <link rel="shortcut icon" href="{% static 'assets/images/s5.webp'%}" type="image/x-icon">
+        <link href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;500&display=swap" rel="stylesheet">
+        <link rel="shortcut icon" href="{% static 'assets/images/s5.webp' %}">
+        <link rel="stylesheet" href="{% static 'assets/css/bootstrap.min.css' %}">
+        <link rel="stylesheet" href="{% static 'https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css' %}">
+        <link rel="stylesheet" href="{% static 'assets/plugins/testimonial/css/owl.carousel.min.css' %}">
+        <link rel="stylesheet" href="{% static 'assets/plugins/testimonial/css/owl.theme.min.css' %}">
+        <link rel="stylesheet" href="{% static 'assets/css/all.min.css' %}">
+        <link rel="stylesheet" type="text/css" href="{% static 'assets/css/style.css' %}" />
+    </head>
+    <body>
+        {% if user.is_authenticated %}
+
+         <header>
+             <div class="container-fluid header">
+                 <div class="top-row">
+                     <div class="container">
+                         <div class="row">
+                             <div class="col-lg-6 left-row">
+                                 <ul>
+                                     <li><i class="far fa-envelope"></i> akhilesh@gmail.com</li>
+                                 </ul>
+                             </div>
+                         </div>
+
+                     </div>
+                 </div>
+                 <div class="logo-row">
+                    <div class="container">
+                        <div class="row lorow">
+                            <h2 style="text-align: left;">Welcome {{user.username}}</h2>
+
+                            <div class="col-md-6 logo-col">
+                                 
+                             </div>
+                             <div class="col-md-6 d-none d-lg-block cno-coll">
+                                 <p><i class="fas fa-mobile-alt"></i> Call Us: 9807468768</p>
+                             </div>
+                        </div>
+                    </div>
+                     
+                 </div>
+                 <div id="menu-jk" class="nav-row">
+                     <div class="container">
+                         <div class="row navrow">
+                             <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                                 
+                                    
+                                  
+                                    <div class="collapse navbar-collapse" id="navbarNavDropdown">
+                                      <ul class="navbar-nav">
+                                        <li class="nav-item">
+                                          <a class="nav-link active" aria-current="page" href="{% url 'home' %}">Home</a>
+                                        </li>
+                                        <li class="nav-item">
+                                          <a class="nav-link" href="{% url 'aboutus' %}">About US</a>
+                                        </li>
+                                         <li class="nav-item">
+                                          <a class="nav-link" href="{% url 'service' %}">Service</a>
+                                        </li>
+                                     
+                                        <li class="nav-item">
+                                          <a class="nav-link" href="{% url 'contactus' %}">Contact US</a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="{% url 'dashboard' %}">Dashboard</a>
+                                          </li>
+                                      </ul>
+                                    </div>
+                                 
+                                </nav>
+                         </div>
+                     </div>
+                 </div>
+             </div>
+         </header>
+{% else %}
+<header>
+    <div class="container-fluid header">
+        <div class="top-row">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-6 left-row">
+                        <ul>
+                            <li><i class="far fa-envelope"></i> akhilesh@gmail.com</li>
+                        </ul>
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
+        <div class="logo-row">
+           <div class="container">
+               <div class="row lorow">
+                   <div class="col-md-6 logo-col">
+                        
+                    </div>
+                    <div class="col-md-6 d-none d-lg-block cno-coll">
+                        <p><i class="fas fa-mobile-alt"></i> Call Us: 9807468768</p>
+                    </div>
+               </div>
+           </div>
+            
+        </div>
+        <div id="menu-jk" class="nav-row">
+            <div class="container">
+                <div class="row navrow">
+                    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                        
+                           <div class="collapse navbar-collapse" id="navbarNavDropdown">
+                             <ul class="navbar-nav">
+                               <li class="nav-item">
+                                 <a class="nav-link active" aria-current="page" href="{% url 'home' %}">Home</a>
+                               </li>
+                               <li class="nav-item">
+                                 <a class="nav-link" href="{% url 'aboutus' %}">About US</a>
+                               </li>
+                                <li class="nav-item">
+                                 <a class="nav-link" href="{% url 'service' %}">Service</a>
+                               </li>
+                            
+                               <li class="nav-item">
+                                 <a class="nav-link" href="{% url 'contactus' %}">Contact US</a>
+                               </li>
+                               <li class="nav-item">
+                                   <a class="nav-link" href="{% url 'signup' %}">Signup</a>
+                                 </li>
+                                 <li class="nav-item">
+                                    <a class="nav-link" href="{% url 'signin' %}">Signin</a>
+                                  </li>
+                             </ul>
+                           </div>
+                        
+                       </nav>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+         {% endif %}
+
+<!--    Slider Starts Here   -->
+<div class="slider container-fluid">
+    <div id="carouselExampleFade" class="carousel slide carousel-fade" data-bs-ride="carousel">
+      <div class="carousel-inner">
+        <div class="carousel-item active">
+          <img src="{% static 'assets/images/s6.jpg' %}" class="d-block w-100" alt="...">
+           <div class="carousel-caption d-none d-md-block">
+          <h2>Login here</h2>
 {% if msg %}
 <h2>{{msg}}</h2>
 {% endif %}
-<form action="" method="post" class="form">
+<form action="" method="post" class="form" style="margin-bottom: 50%;">
     {% csrf_token %}
-    <label for="uname">Username</label><br>
+    <label for="uname" style="color: rgba(5, 5, 5, 0.89);">Username</label><br>
     <input type="text" name="uname" id="uname" placeholder="Username"><br>
-    <label for="password">Password</label><br>
+    <label for="password" style="color: rgba(7, 8, 8, 0.89);">Password</label><br>
     <input type="password" name="passw" id="password" placeholder="Password"><br><br>
     <input type="submit" value="Submit" class="in">
 </form>
-{% endblock %}
+
+
+        </div>
+        </div>
+      
+        
+      </div><a href="about.html" title="about"></a>
+      <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleFade" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+      </button>
+      <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleFade" data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+      </button>
+    </div>
+</div>
+   
+   
+  
+
+    </body>
+
+<script src="{% static 'assets/js/jquery-3.2.1.min.js' %}"></script>
+<script src="{% static 'assets/js/popper.min.js' %}"></script>
+<script src="{ static 'assets/js/bootstrap.bundle.min.js' %}"></script>
+<script src="{% static 'assets/plugins/scroll-fixed/jquery-scrolltofixed-min.js' %}"></script>
+<script src="{ static 'assets/plugins/testimonial/js/owl.carousel.min.js' %}"></script>
+<script src="{% static 'assets/js/script.js' %}"></script>
+
+</html>
+
+
+
+
+

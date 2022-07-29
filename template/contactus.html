@@ -1,12 +1,12 @@
 {% extends  'base.html' %}
-{% block section %}
+{% block dashboard %}
 {% if data %}
 <h2>{{data}}</h2>
 
 {% endif %}
-<h2 style="text-align: center;">This is Contact page</h2><br>
+<h2 style="margin-top: 70px;">This is Contact page</h2><br>
 
-<form action="" method="post" class="form">
+<form action="" method="post" class="form" style="padding-right: 100%;">
     {% csrf_token %}
     <label>Name</label><br>
     <input type="text" name="name" placeholder="Enter your name"><br>
@@ -19,7 +19,7 @@
 
     <input type="submit" value="Submit" class="inti">
 </form><br><br>
-<table border="1">
+<table style="text-align: center; color: black; margin-top: 10px;" border="1">
     <tr>
         <th>ID</th>
         <th>Name</th>

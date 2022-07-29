@@ -1,35 +1,37 @@
 {% extends 'cust.html' %}
-{% block section %}
+{% block dashboard %}
 {% if msz %}
 <h2>{{msz}}</h2>
 {% endif %}
 <br><br>
+<div class="clode" style="margin-bottom: 8%;">
 <h2>Employee Information</h2><br>
-<form action="" method="post" enctype="multipart/form-data" >
+<form action="" method="post" enctype="multipart/form-data">
     {% csrf_token %}
-    <label> Name</label><br>
+    <label  style="color: black;"> Name</label><br>
     <input type="text" name="name"><br>
-    <label> Phone Number</label><br>
+    <label  style="color: black;"> Phone Number</label><br>
     <input type="number" name="phone"><br>
-    <label>Email</label><br>
+    <label  style="color: black;">Email</label><br>
     <input type="text" name="email" ><br>
 
-    <label>Tax rate</label><br>
+    <label  style="color: black;">Tax rate</label><br>
     <input type="text" name="tax"><br>
     
-    <label>Salary</label><br>
+    <label  style="color: black;">Salary</label><br>
     <input type="text" name="salary"><br>
 
-    <label>Woring status</label><br>
+    <label  style="color: black;">Woring status</label><br>
     <select name="status">
         <option value="part">Parttime</option>
         <option value="over">Overtime</option>
         <option value="normal">Normaltime</option>
     </select><br>
  
-    <label>joining date</label><br>
+    <label  style="color: black;">joining date</label><br>
     <input type="text" name="join"><br>
 <br>
     <input type="submit" value="Submit" class="inti">
 </form><br>
+</div>
     {% endblock %}
