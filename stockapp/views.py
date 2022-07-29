@@ -193,26 +193,21 @@ def logouts(request):
 
 def Employees(request):
     if request.method=="POST":
-        attendence=request.POST['attendence']
+        
         status=request.POST['status']
-          
-        employee_object=Employee(name=request.POST['name'],phone=request.POST['phone'],\
-        email=request.POST['email'],tax=request.POST['tax'],salary=request.POST['salary'],\
-            join=request.POST['join'])   
+        
+        employee_object=Employee(
+        tax=request.POST['tax'],salary=request.POST['salary'],\
+            join=request.POST['join'],overtimehour=request.POST['hour'],bonus=request.POST['bonus'],no_of_leave_day=request.POST['leave'])   
         employee_object.save()
-        if "present " in attendence:
-            employee_object.attendence="present"
-        if "absent" in attendence :
-            employee_object.attendence="present"
-        if "partial" in attendence:
-            employee_object.attendence="partial"
+      
 
         if "part " in status:
-            employee_object.work="part"
+            employee_object.work_status="Partime"
         if "over" in status :
-            employee_object.work="over"
+            employee_object.work_status="Overtime"
         if "normal" in status:
-            employee_object.work="normal"       
+            employee_object.work_status="NOrmaltime"       
         employee_object.save()
 
         msz="Sucessfully Saved Employee"
@@ -221,7 +216,6 @@ def Employees(request):
     else:    
         return render(request,'employee.html')    
     return render(request,'employee.html')    
-
 
 def aboutus(request):
     return render(request,'aboutus.html')

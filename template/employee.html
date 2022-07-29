@@ -1,7 +1,7 @@
 {% extends 'cust.html' %}
 {% block dashboard %}
 {% if msz %}
-<h2>{{msz}}</h2>
+<h2 style="color: black;">{{msz}}</h2>
 {% endif %}
 <br><br>
 <div class="clode" style="margin-bottom: 8%;">
@@ -21,13 +21,26 @@
     <label  style="color: black;">Salary</label><br>
     <input type="text" name="salary"><br>
 
+    <label style="color: black;">Bonus</label><br>
+    <input type="text" name="bonus"><br>
+
+    <label style="color: black;">No of leave days</label><br>
+    <input type="number" name="leave"><br>
+
     <label  style="color: black;">Woring status</label><br>
     <select name="status">
         <option value="part">Parttime</option>
         <option value="over">Overtime</option>
         <option value="normal">Normaltime</option>
     </select><br>
- 
+
+
+
+
+    <label style="color: black;">Overtime hour</label><br>
+
+    <input type="number" name="hour"><br>
+
     <label  style="color: black;">joining date</label><br>
     <input type="text" name="join"><br>
 <br>

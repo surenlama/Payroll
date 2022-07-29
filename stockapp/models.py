@@ -1,7 +1,7 @@
 
 from django.db import models
 from django.contrib.auth.models import User
-from .utils import choice
+from .utils import choice,workchoice
 
 
 class Contact(models.Model):
@@ -45,6 +45,7 @@ class Employee(models.Model):
     overtimehour = models.FloatField(max_length=250)
     bonus = models.FloatField(max_length=250,default=0)
     no_of_leave_day = models.FloatField(max_length=250,default=0)
+    work_status = models.CharField(max_length=250,choices=workchoice)
 
     # def __str__(self):
     #     return self.user.first_name
