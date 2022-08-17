@@ -1,3 +1,4 @@
+
 {% extends 'base.html' %}
 {% block dashboard %}
 <div >
@@ -48,11 +49,39 @@
     </li><br>
     <li>
         <a href="{% url 'employee' %}" style="color: rgb(12, 1, 1); padding-right: 80%;">ADD EMPLOYEE</a>
+        <li>
+            <a href="{% url 'sendemail' %}" style="color: rgb(12, 1, 1); padding-right: 80%;">SEND EMAIL</a>
+        </li><br>
+        <li>
+            <a href="{% url 'changepass' %}" style="color: rgb(12, 1, 1); padding-right: 80%;">CHANGE PASSWORD</a>
+        </li><br>
+        <li>
+            <a href="{% url 'logouts' %}" style="color: rgb(12, 1, 1); padding-right: 80%;">LOGOUT</a>
+        </li>
+        {% else %}
+         <h1>Please login First</h1>
+        {% endif %}
+        <br><br>
+        <br>
+    </ul>
+    </div>
+    {% endblock %}  <li>
+        <a href="{% url 'sendemail' %}" style="color: rgb(12, 1, 1); padding-right: 80%;">SEND EMAIL</a>
     </li><br>
     <li>
-        <a href="{% url 'employeelist' %}" style="color: rgb(8, 1, 1); padding-right: 80%;">View EMPLOYEE</a>
+        <a href="{% url 'changepass' %}" style="color: rgb(12, 1, 1); padding-right: 80%;">CHANGE PASSWORD</a>
     </li><br>
     <li>
+        <a href="{% url 'logouts' %}" style="color: rgb(12, 1, 1); padding-right: 80%;">LOGOUT</a>
+    </li>
+    {% else %}
+     <h1>Please login First</h1>
+    {% endif %}
+    <br><br>
+    <br>
+</ul>
+</div>
+{% endblock %}  <li>
         <a href="{% url 'sendemail' %}" style="color: rgb(12, 1, 1); padding-right: 80%;">SEND EMAIL</a>
     </li><br>
     <li>
