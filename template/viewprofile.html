@@ -3,7 +3,7 @@
 {% if msg %}
 <h2>{{msg}}</h2>
 {% endif %}
-<table border="1">
+<table border="1" style="color: black;">
 <thead class="money">
     <tr>
         <th>IMAGE</th>
@@ -21,31 +21,31 @@
     <tr>
         {% if data %}
         <td>     
-            <img src="/media/{{data.profile}}" alt="no image" style="height: 100px; width: 200px;">  
+            <img src="/media/{{data.profile}}" alt="no image" style="height: 100px; width: 800px;">  
         </td>
         <td>
-            <h2>{{user.first_name}}</h2>
+            <h2 style="font-size: 15px;">{{user.first_name}}</h2>
         </td>
         <td>
-            <h2>{{user.last_name}}</h2>
+            <h2 style="font-size: 15px;">{{user.last_name}}</h2>
         </td>
         <td>
-            <h2>{{user.username}}</h2>
+            <h2 style="font-size: 15px;">{{user.username}}</h2>
         </td>
         <td>
-            <h2>{{user.email}}</h2>
+            <h2 style="font-size: 15px;">{{user.email}}</h2>
         </td>
         <td>
-            <h2>{{data.contact_number}}</h2>  
+            <h2 style="font-size: 15px;">{{data.contact_number}}</h2>  
         </td>
         <td>
-            <h2>{{data.age}}</h2>
+            <h2 style="font-size: 15px;">{{data.age}}</h2>
         </td>
         <td>
-            <h2>{{data.gender}}</h2>
+            <h2 style="font-size: 15px;">{{data.gender}}</h2>
         </td>
         <td>
-            <h2>{{data.occupation}}</h2>
+            <h2 style="font-size: 15px;">{{data.occupation}}</h2>
         </td>
         {% endif %}
     </tr>

@@ -1,7 +1,6 @@
 {% load static %}
 <!doctype html>
     <html lang="en">
-
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -18,7 +17,6 @@
     </head>
     <body>
         {% if user.is_authenticated %}
-
          <header>
              <div class="container-fluid header">
                  <div class="top-row">
@@ -37,9 +35,7 @@
                     <div class="container">
                         <div class="row lorow">
                             <h2 style="text-align: left;">Welcome {{user.username}}</h2>
-
                             <div class="col-md-6 logo-col">
-                                 
                              </div>
                              <div class="col-md-6 d-none d-lg-block cno-coll">
                                  <p><i class="fas fa-mobile-alt"></i> Call Us: 9807468768</p>
@@ -146,16 +142,15 @@
     </div>
 </header>
          {% endif %}
-
 <!--    Slider Starts Here   -->
 <div class="slider container-fluid">
     <div id="carouselExampleFade" class="carousel slide carousel-fade" data-bs-ride="carousel">
       <div class="carousel-inner">
         <div class="carousel-item active">
           <img src="{% static 'assets/images/s6.jpg' %}" class="d-block w-100" alt="...">
-           <div class="carousel-caption d-none d-md-block">
-        
+          <br><br><br><br>
 
+           <div class="carousel-caption d-none d-md-block">
 
             {% if msg %}
             <h2>{{msg}}</h2>

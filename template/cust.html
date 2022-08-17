@@ -3,7 +3,6 @@
 <div >
 <ul style="color: black;">
         {% if user.is_staff %}
-   
     <li style="margin-bottom: 60%;">
         <a href="{% url 'viewprofile' %}" style="color: rgb(15, 1, 1);padding-right: 80%">VIEW PROFILE</a >
     </li>
@@ -16,6 +15,9 @@
     </li><br>
     <li>
         <a href="{% url 'employee' %}" style="color: rgb(8, 1, 1); padding-right: 80%;">ADD EMPLOYEE</a>
+    </li><br>
+    <li>
+        <a href="{% url 'employeelist' %}" style="color: rgb(8, 1, 1); padding-right: 80%;">View EMPLOYEE</a>
     </li><br>
     <li>
         <a href="{% url 'attendence' %}" style="color: rgb(8, 1, 1); padding-right: 80%;">Attendence</a >
@@ -48,6 +50,9 @@
         <a href="{% url 'employee' %}" style="color: rgb(12, 1, 1); padding-right: 80%;">ADD EMPLOYEE</a>
     </li><br>
     <li>
+        <a href="{% url 'employeelist' %}" style="color: rgb(8, 1, 1); padding-right: 80%;">View EMPLOYEE</a>
+    </li><br>
+    <li>
         <a href="{% url 'sendemail' %}" style="color: rgb(12, 1, 1); padding-right: 80%;">SEND EMAIL</a>
     </li><br>
     <li>
@@ -56,9 +61,7 @@
     <li>
         <a href="{% url 'logouts' %}" style="color: rgb(12, 1, 1); padding-right: 80%;">LOGOUT</a>
     </li>
-  
     {% else %}
-
      <h1>Please login First</h1>
     {% endif %}
     <br><br>

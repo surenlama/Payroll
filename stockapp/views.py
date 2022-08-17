@@ -3,9 +3,11 @@ from django.shortcuts import redirect, render
 from .models import  Category,Register,Attendance
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate,login,logout
-# Create your views here.
 from .models import Contact,Employee
 from django.core.mail import EmailMessage
+from django.contrib.auth.mixins import LoginRequiredMixin
+from django.views.generic import CreateView,ListView
+from .forms import EmployeeCreationForm
 
 
 def home(request):
@@ -187,35 +189,24 @@ def sendemail(request):
         return render(request,'sendemail.html',{'data':"Sorry you don't have data"})    
     return render(request,'sendemail.html')    
 
+
 def logouts(request):
     logout(request)
     return render(request,'base.html')
 
-def Employees(request):
-    if request.method=="POST":
-        
-        status=request.POST['status']
-        
-        employee_object=Employee(
-        tax=request.POST['tax'],salary=request.POST['salary'],\
-            join=request.POST['join'],overtimehour=request.POST['hour'],bonus=request.POST['bonus'],no_of_leave_day=request.POST['leave'])   
-        employee_object.save()
-      
 
-        if "part " in status:
-            employee_object.work_status="Partime"
-        if "over" in status :
-            employee_object.work_status="Overtime"
-        if "normal" in status:
-            employee_object.work_status="NOrmaltime"       
-        employee_object.save()
+class EmployeeCreateView(LoginRequiredMixin,CreateView):
+    form_class = EmployeeCreationForm
+    template_name = "employee.html"
+    success_url = '/employee/'
 
-        msz="Sucessfully Saved Employee"
-        return render(request,'employee.html',{'msz':msz})    
 
-    else:    
-        return render(request,'employee.html')    
-    return render(request,'employee.html')    
+class EmployeeList(LoginRequiredMixin,ListView):
+    model = Employee
+    template_name = "employeelist.html"
+    success_url = '/employeelist/'
+    context_object_name = "employee_list"
+
 
 def aboutus(request):
     return render(request,'aboutus.html')

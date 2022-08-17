@@ -5,46 +5,18 @@
 {% endif %}
 <br><br>
 <div class="clode" style="margin-bottom: 8%;">
-<h2>Employee Information</h2><br>
-<form action="" method="post" enctype="multipart/form-data">
-    {% csrf_token %}
-    <label  style="color: black;"> Name</label><br>
-    <input type="text" name="name"><br>
-    <label  style="color: black;"> Phone Number</label><br>
-    <input type="number" name="phone"><br>
-    <label  style="color: black;">Email</label><br>
-    <input type="text" name="email" ><br>
 
-    <label  style="color: black;">Tax rate</label><br>
-    <input type="text" name="tax"><br>
-    
-    <label  style="color: black;">Salary</label><br>
-    <input type="text" name="salary"><br>
+<h1 class="text-center wow fadeInUp">Add Employee</h1>
 
-    <label style="color: black;">Bonus</label><br>
-    <input type="text" name="bonus"><br>
-
-    <label style="color: black;">No of leave days</label><br>
-    <input type="number" name="leave"><br>
-
-    <label  style="color: black;">Woring status</label><br>
-    <select name="status">
-        <option value="part">Parttime</option>
-        <option value="over">Overtime</option>
-        <option value="normal">Normaltime</option>
-    </select><br>
-
-
-
-
-    <label style="color: black;">Overtime hour</label><br>
-
-    <input type="number" name="hour"><br>
-
-    <label  style="color: black;">joining date</label><br>
-    <input type="text" name="join"><br>
-<br>
-    <input type="submit" value="Submit" class="inti">
-</form><br>
-</div>
-    {% endblock %}
+      <form border="2" class="contact-form mt-5" method="post" enctype="multipart/form-data" style="color:black;" >
+        {%csrf_token%}
+        {% if msg %}
+        <h2>{{msg}}</h2>
+        {% endif %}
+        {% for fm in form %}
+            {{fm.label_tag}} {{fm}}  <br><br>
+            <small style="color:rgb(7, 4, 4);">{{fm.errors|striptags}}</small>
+            {% endfor %}
+        <button type="submit" class="btn btn-primary wow zoomIn"> Submit</button>
+      </form>
+{% endblock %}

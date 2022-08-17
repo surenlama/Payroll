@@ -7,23 +7,25 @@
 <thead class="money" >
     <tr style="color: black; font-size: 20px;" >
         <th>Employee Name</th>
+        <th>Employee Email</th>
         <th>Tax Rate</th>
         <th>Monthly Salary</th>
         <th>Over time in hour</th>
         <th>Bonus</th>
         <th>No of leave day</th>
-        <th>Total Salary</th>
          </tr>
 </thead>
 
 <tbody class="money1">
-    {% for s in salary%}
+    {% for s in employee_list %}
 
     <tr >
       <td >
-        <h2 style="font-size: 20px;">{{s.user}}</h2>
+        <h2 style="font-size: 20px;">{{s.user.username}}</h2>
       </td>
-    
+      <td>
+        <h2 style="font-size: 20px;">{{s.user.email}}</h2>
+    </td>
         <td>
             <h2 style="font-size: 20px;">{{s.tax}}</h2>
         </td>
@@ -39,9 +41,7 @@
         <td>
             <h2 style="font-size: 20px;">{{s.no_of_leave_day}}</h2>
         </td>
-        <td>
-            <h2 style="font-size: 20px;">{{s.total_salary}}</h2>
-        </td>
+
     </tr>
     {% endfor %}
 

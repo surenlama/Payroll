@@ -14,11 +14,10 @@ urlpatterns = [
     path('service/', views.service,name="service"),
     path('sendemail/', views.sendemail,name="sendemail"),
     path('logouts/', views.logouts,name="logouts"),
-    path('employee/', views.Employees,name="employee"),
+    path('employee/', views.EmployeeCreateView.as_view(), name="employee"),
     path('aboutus/', views.aboutus,name="aboutus"),
     path('attendence/', views.attendance,name="attendence"),
     # path('list/attendence/', views.attendenceshow,name="attendenceshow"),
     path('totalsalary/', views.totalsalaries,name="totalsalary"),
-
-
+    path('employeelist/', views.EmployeeList.as_view(), name="employeelist"),
 ]
