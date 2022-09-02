@@ -216,7 +216,6 @@ def attendance(request):
     if request.method=="POST":
         attendence=request.POST['attendence']
         dates = request.POST['date']
-        days = request.POST['day']
         user_object = User.objects.get(id=request.user.id)
         attendence_object = Attendance.objects.create(user=user_object)
         if "present " in attendence:
@@ -226,18 +225,17 @@ def attendance(request):
         if "partial" in attendence:
             attendence_object.status="Partially"
         attendence_object.date = dates 
-        attendence_object.no_of_leave_day = days   
         attendence_object.save()    
         return render(request,'attendance.html',{'msg':'Sucessfully recorded'})
     return render(request,'attendance.html')
 
 
-# def attendenceshow(request):
-#     attendenceobject = Attendance.objects.filter(user=request.user)
-#     print(attendenceobject)
-#     return render(request,'showattendence.html',{'attendence':attendenceobject})
+def attendenceshow(request):
+    attendenceobject = Attendance.objects.filter(user=request.user,status="Absent")
+    print(attendenceobject)
+    return render(request,'showattendence.html',{'attendence':attendenceobject})
 
 
 def totalsalaries(request):
     employeeobject = Employee.objects.all()
-    return render(request,'totalsalary.html',{'salary':employeeobject})    
+    return render(request,'totalsalary.html',{'salary':employeeobject})  

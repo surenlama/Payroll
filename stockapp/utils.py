@@ -3,8 +3,6 @@ choice=(
     )
 workchoice = (
     ('Parttime','Partime'),
-    ('NOrmalTime','Normaltime'),
+    ('NormalTime','Normaltime'),
     ('OverTime','Overtime'),
-
-
 )

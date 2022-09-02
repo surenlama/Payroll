@@ -3,28 +3,31 @@
 {% if msg %}
 <h2>{{msg}}</h2>
 {% endif %}
-<table border="1">
-<thead class="money">
+<table border="1" style="color: black; text-align: center;">
+{% if attendence %}
+
+<thead class="money" style="text-align: center;">
     <tr>
-        <th>Status</th>
-        <th>absent date</th>
+        <th style="color: black;font-size: 30px;">Status</th>
+        <th style="color: black;font-size: 30px;">absent date</th>
     </tr>
 </thead>
 
 <tbody class="money1">
-
+    {% for i in attendence %}
     <tr>
-        {% for a in attendence%}
-      
         <td>
-            <h2>{{a.status}}</h2>
+            <h2 style="color: black; font-size: 20px;">{{i.status}}</h2>
         </td>
         <td>
-            <h2>{{a.date}}</h2>
+            <h2 style="color: black;font-size: 20px;">{{i.date}}</h2>
         </td>
-        {% endfor %}
     </tr>
+    {% endfor %}
 
+    {% else %}
+<h2>Sorry no data</h2>
+{% endif %}
 </tbody>
 </table>
 {% endblock %}

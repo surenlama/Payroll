@@ -17,7 +17,7 @@ urlpatterns = [
     path('employee/', views.EmployeeCreateView.as_view(), name="employee"),
     path('aboutus/', views.aboutus,name="aboutus"),
     path('attendence/', views.attendance,name="attendence"),
-    # path('list/attendence/', views.attendenceshow,name="attendenceshow"),
+    path('list/attendence/', views.attendenceshow,name="viewattendence"),
     path('totalsalary/', views.totalsalaries,name="totalsalary"),
     path('employeelist/', views.EmployeeList.as_view(), name="employeelist"),
 ]
