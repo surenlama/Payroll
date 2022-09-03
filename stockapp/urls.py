@@ -16,8 +16,12 @@ urlpatterns = [
     path('logouts/', views.logouts,name="logouts"),
     path('employee/', views.EmployeeCreateView.as_view(), name="employee"),
     path('aboutus/', views.aboutus,name="aboutus"),
-    path('attendence/', views.attendance,name="attendence"),
+    path('attendence/', views.AttendenceCreateView.as_view(),name="attendence"),
     path('list/attendence/', views.attendenceshow,name="viewattendence"),
     path('totalsalary/', views.totalsalaries,name="totalsalary"),
     path('employeelist/', views.EmployeeList.as_view(), name="employeelist"),
+    path('overtime/', views.OvertimeCreateView.as_view(), name="overtime"),
+    path('list/overtime/', views.OvertimeList.as_view(), name="viewovertime"),
+    path('bonus/', views.BonusCreateView.as_view(), name="bonus"),
+
 ]

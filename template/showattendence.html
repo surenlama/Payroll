@@ -8,6 +8,7 @@
 
 <thead class="money" style="text-align: center;">
     <tr>
+        <th style="color: black;font-size: 30px;">Employee</th>
         <th style="color: black;font-size: 30px;">Status</th>
         <th style="color: black;font-size: 30px;">absent date</th>
     </tr>
@@ -16,6 +17,9 @@
 <tbody class="money1">
     {% for i in attendence %}
     <tr>
+        <td>
+            <h2 style="color: black; font-size: 20px;">{{i.employee}}</h2>
+        </td>
         <td>
             <h2 style="color: black; font-size: 20px;">{{i.status}}</h2>
         </td>

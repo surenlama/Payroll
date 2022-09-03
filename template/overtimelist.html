@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+{% block dashboard %}
+{% if msg %}
+<h2>{{msg}}</h2>
+{% endif %}
+<table  style="margin-bottom: 50%;" border="1">
+<thead class="money" >
+    <tr style="color: black; font-size: 20px;" >
+        <th style="color: black;">Employee</th>
+        <th style="color: black;">Date</th>
+        <th style="color: black;">Work in hour</th>
+         </tr>
+</thead>
+
+<tbody class="money1">
+    {% for s in overtime_list %}
+
+    <tr>
+      <td >
+        <h2 style="font-size: 20px; color: black;">{{s.employee.first_name}}</h2>
+      </td>
+      <td>
+        <h2 style="font-size: 20px; color: black;">{{s.date}}</h2>
+    </td>
+        <td>
+            <h2 style="font-size: 20px; color: black;">{{s.workInHour}}</h2>
+        </td>
+    </tr>
+    {% endfor %}
+</tbody>
+</table>
+
+{% endblock %}

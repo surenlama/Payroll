@@ -1,23 +1,24 @@
 {% extends 'base.html' %}
 {% block dashboard %}
 {% if msg %}
-<h2>{{msg}}</h2>
+<br><br><br>
+
+<h2 style="margin-right: 1px;">{{msg}}</h2><br><br>
 {% endif %}
-<table  style="margin-bottom: 50%;" border="1">
+<center>
+<table  style="margin-bottom: 50%; text-align: center;" border="1">
 <thead class="money" >
     <tr style="color: black; font-size: 20px;" >
         <th>First Name</th>
         <th>Last Name</th>
         <th>Monthly Salary</th>
         <th>Tax Rate</th>
-        <th>No of leave day</th>
-        <th>Your Toal Amount</th>
+        <th>Your Total Amount</th>
          </tr>
 </thead>
 
 <tbody class="money1">
     {% for s in salary%}
-
     <tr >
       <td >
         <h2 style="font-size: 20px;">{{s.first_name}}</h2>
@@ -32,10 +33,6 @@
         <td>
             <h2 style="font-size: 20px;">{{s.tax_rate}}</h2>
         </td>
-     
-        <td>
-            <h2 style="font-size: 20px;">{{s.no_of_absent_days}}</h2>
-        </td>
         <td>
             <h2 style="font-size: 20px;">{{s.total_salary}}</h2>
         </td>
@@ -44,5 +41,5 @@
 
 </tbody>
 </table>
-
+</center>
 {% endblock %}

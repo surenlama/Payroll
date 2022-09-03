@@ -1,14 +1,13 @@
 from django.http import HttpResponse
 from django.shortcuts import redirect, render
-from .models import  Category,Register,Attendance
+from .models import  Bonus, Category, Overtime,Register,Attendance
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate,login,logout
 from .models import Contact,Employee
 from django.core.mail import EmailMessage
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.generic import CreateView,ListView
-from .forms import EmployeeCreationForm
-
+from .forms import EmployeeCreationForm,AttendenceCreationForm,OvertimeCreationForm,BonusCreationForm
 
 def home(request):
     return render(request,'home.html')
@@ -149,7 +148,7 @@ def changepass(request):
 
 
 def contactus(request):
-    contact_check=Contact.objects.all()
+    contact_check=Contact.objects.all()[:5]
     if request.method=="POST":
         name = request.POST['name']
         contact_number = request.POST['number']
@@ -169,10 +168,8 @@ def service(request):
     return render(request,'service.html')    
 
 def sendemail(request):
-    data=""
-    register=Register.objects.filter(user__id=request.user.id)
-    if register:
-        register=Register.objects.get(user__id=request.user.id)
+    if request.user.is_authenticated:
+        data=""
         if request.method=="POST":
             rec=request.POST['to']
             subject=request.POST['subject']
@@ -185,10 +182,7 @@ def sendemail(request):
             except:
                 data="Could not sent please check internet connection/Email address"
         return render(request,'sendemail.html',{"data":data})
-    else:
-        return render(request,'sendemail.html',{'data':"Sorry you don't have data"})    
-    return render(request,'sendemail.html')    
-
+    return render(request,'sendemail.html',{"data":"Login first"})
 
 def logouts(request):
     logout(request)
@@ -212,30 +206,55 @@ def aboutus(request):
     return render(request,'aboutus.html')
 
 
-def attendance(request):
-    if request.method=="POST":
-        attendence=request.POST['attendence']
-        dates = request.POST['date']
-        user_object = User.objects.get(id=request.user.id)
-        attendence_object = Attendance.objects.create(user=user_object)
-        if "present " in attendence:
-            attendence_object.status="Present"
-        if "absent" in attendence :
-            attendence_object.status="Absent"
-        if "partial" in attendence:
-            attendence_object.status="Partially"
-        attendence_object.date = dates 
-        attendence_object.save()    
-        return render(request,'attendance.html',{'msg':'Sucessfully recorded'})
-    return render(request,'attendance.html')
-
+class AttendenceCreateView(LoginRequiredMixin,CreateView):
+    form_class = AttendenceCreationForm
+    template_name = "attendance.html"
+    success_url = '/attendence/'
 
 def attendenceshow(request):
-    attendenceobject = Attendance.objects.filter(user=request.user,status="Absent")
-    print(attendenceobject)
+    attendenceobject = Attendance.objects.filter(status="Absent")
     return render(request,'showattendence.html',{'attendence':attendenceobject})
 
 
 def totalsalaries(request):
+    data = ""
     employeeobject = Employee.objects.all()
-    return render(request,'totalsalary.html',{'salary':employeeobject})  
+    for i in employeeobject:
+
+        rec=i.email
+        print(i.email)
+        subject="Monthly salary payment"
+        message=f"You account has been sucessfully credited by {i.salary} and becames {i.bankamount}"
+        em=EmailMessage(subject,message,to=[rec,])
+        em.send()
+        data="Email sent"
+    return render(request,'totalsalary.html',{"msg":"please check your mail for your salary info",'salary':employeeobject})
+        # except:
+        #     data="Could not sent please check internet connection/Email address"
+        #     return render(request,'totalsalary.html',{"data":data,'salary':employeeobject})
+    return render(request,'totalsalary.html',{"data":data,'salary':employeeobject})
+
+class AttendenceCreateView(LoginRequiredMixin,CreateView):
+    form_class = AttendenceCreationForm
+    template_name = "attendance.html"
+    success_url = '/attendence/'
+
+
+
+class OvertimeCreateView(LoginRequiredMixin,CreateView):
+    form_class = OvertimeCreationForm
+    template_name = "overtime.html"
+    success_url = '/overtime/'
+
+
+class OvertimeList(LoginRequiredMixin,ListView):
+    model = Overtime
+    template_name = "overtimelist.html"
+    success_url = '/list/overtime/'
+    context_object_name = "overtime_list"
+
+class BonusCreateView(LoginRequiredMixin,CreateView):
+    form_class = BonusCreationForm
+    template_name = "bonus.html"
+    success_url = '/bonus/'
+

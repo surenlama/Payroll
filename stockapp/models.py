@@ -58,18 +58,44 @@ class Employee(models.Model):
     join_date = models.DateField(null=True)    
     work_status = models.CharField(max_length=250,choices=workchoice)
     bankamount = models.FloatField(default=0)
-    no_of_absent_days = models.FloatField(default=0)
     
+    def __str__(self):
+        return self.first_name
+
     @property
     def total_salary(self):
-        self.bankamount+=self.salary-(self.no_of_absent_days*(self.salary/24)-self.tax_rate/100*self.salary)
+        absent = 0
+        over = 0
+        bonu=0
+        attendence = self.attende.all()
+        overtimes = self.overtime.all()
+        bonuss = self.bonus.all()
+
+        for i in attendence:
+            absent=i.no_of_absent_days
+        for j in overtimes:
+            over=j.workInHour
+        for k in bonuss:
+            bonu=k.bonus_price            
+        self.bankamount+=self.salary-(absent*(self.salary/24)-self.tax_rate/100*self.salary)+over*100+bonu
+        self.save()
         return self.bankamount
 
 
 class Attendance(models.Model):    
     status = models.CharField(choices=choice,max_length=250)
     date = models.DateField(null=True)
-    employee = models.ForeignKey(Employee,on_delete=models.CASCADE,null=True,blank=True)
+    employee = models.ForeignKey(Employee,on_delete=models.CASCADE,null=True,blank=True,related_name="attende")
+    no_of_absent_days = models.FloatField(default=0)
 
 
-  
+class Overtime(models.Model):
+    employee = models.ForeignKey(Employee,on_delete=models.CASCADE,related_name="overtime")
+    date = models.DateField()
+    workInHour = models.FloatField()  
+
+class Bonus(models.Model):
+    employee = models.ForeignKey(Employee,on_delete=models.CASCADE,related_name="bonus")
+    date = models.DateField()
+    occation = models.CharField(max_length=250)  
+    bonus_price = models.FloatField(default=0)

@@ -15,13 +15,22 @@
         <a href="{% url 'employee' %}" style="color: rgb(8, 1, 1); padding-right: 80%;">ADD EMPLOYEE</a>
     </li><br>
     <li>
-        <a href="{% url 'employeelist' %}" style="color: rgb(8, 1, 1); padding-right: 80%;">View EMPLOYEE</a>
+        <a href="{% url 'employeelist' %}" style="color: rgb(8, 1, 1); padding-right: 80%;">VIEW EMPLOYEE</a>
     </li><br>
     <li>
-        <a href="{% url 'attendence' %}" style="color: rgb(8, 1, 1); padding-right: 80%;">Create Attendence</a >
+        <a href="{% url 'attendence' %}" style="color: rgb(8, 1, 1); padding-right: 80%;">CREATE ATTENDANCE</a >
     </li><br>
     <li>
-        <a href="{% url 'viewattendence' %}" style="color: rgb(12, 1, 1); padding-right: 80%;">View Attendance</a >
+        <a href="{% url 'viewattendence' %}" style="color: rgb(12, 1, 1); padding-right: 80%;">VIEW ATTENDANCE</a >
+    </li><br>
+    <li>
+        <a href="{% url 'bonus' %}" style="color: rgb(8, 1, 1); padding-right: 80%;">ADD BONUS</a>
+    </li><br>
+    <li>
+        <a href="{% url 'viewovertime' %}" style="color: rgb(12, 1, 1); padding-right: 80%;"> VIEW OVERTIME</a >
+    </li><br>
+    <li>
+        <a href="{% url 'totalsalary' %}" style="color: rgb(12, 1, 1); padding-right: 80%;">SEND SALARY</a>
     </li><br>
      <li>
         <a href="{% url 'sendemail' %}" style="color: rgb(8, 1, 1); padding-right: 80%;">SEND EMAIL</a>
@@ -32,9 +41,7 @@
     <li>
         <a href="{% url 'logouts' %}" style="color: rgb(12, 1, 1); padding-right: 80%;">LOGOUT</a>
     </li>
-    <li>
-        <a href="{% url 'totalsalary' %}" style="color: rgb(12, 1, 1); padding-right: 80%;">Send Salary</a>
-    </li>
+
     {% elif user.is_active  %}
     
     <li>
@@ -45,10 +52,16 @@
         <a href="{% url 'updateprofile' %}" style="color: rgb(12, 1, 1); padding-right: 80%;">UPDATE PROFILE</a >
     </li><br>
     <li>
-        <a href="{% url 'attendence' %}" style="color: rgb(12, 1, 1); padding-right: 80%;"> Create Attendance</a >
+        <a href="{% url 'attendence' %}" style="color: rgb(12, 1, 1); padding-right: 80%;"> ADD ATTENDANCE</a >
     </li><br>
     <li>
-        <a href="{% url 'viewattendence' %}" style="color: rgb(12, 1, 1); padding-right: 80%;"> View Attendance</a >
+        <a href="{% url 'viewattendence' %}" style="color: rgb(12, 1, 1); padding-right: 80%;"> VIEW ATTENDANCE</a >
+    </li><br>
+    <li>
+        <a href="{% url 'overtime' %}" style="color: rgb(12, 1, 1); padding-right: 80%;"> ADD OVERTIME</a >
+    </li><br>
+    <li>
+        <a href="{% url 'viewovertime' %}" style="color: rgb(12, 1, 1); padding-right: 80%;"> VIEW OVERTIME</a >
     </li><br>
     <li>
         <a href="{% url 'employee' %}" style="color: rgb(12, 1, 1); padding-right: 80%;">ADD EMPLOYEE</a>
